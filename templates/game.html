@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+            <section>
+                <img src="{{ url_for('static', filename='img/command_guy.png') }}">
+                <div class="col">
+                    <h4>EHJ Arbiter:</h4>
+                    <p id="hints" onload="cycleHints()">test</p>
+                </div>
+            </section>
+            <main>
+                <canvas id="game_canvas"></canvas>
+            </main>
+            <footer>
+                <nav id="button_menu">
+                    <a href="/game"><button>Restart</button></a>
+                    <a href="/"><button>Main Menu</button></a>
+                </nav>
+                <div>
+                    <p>Game by TJKapfer//MrChow</p>
+                    <p>May 2021//First Solo Game</p>
+                </div>
+            </footer>
+        <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+{% endblock content %}

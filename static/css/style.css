@@ -1,0 +1,350 @@
+/* ROOT VARIABLES */
+:root {
+    --heavytext: lime;
+    --textcolor: rgb(132, 255, 132);
+    --texthighlight: honeydew;
+    --gametext: gold;
+    --bgcolor: rgb(0, 0, 0);
+    --bordercolor: rgb(87, 87, 87);
+    --transhighlight: rgba(174, 0, 255, 0.12);
+
+    --globalmar: .5em;
+    --globalpad: .5em;
+    --roundedge: 10px;
+    --rounderedge: 25%;
+}
+
+/* GLOBAL*/
+* {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--textcolor);
+    margin: 0px;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background: black;
+    margin: 0px auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+#wrapper {
+    /*CENTER EVERYTHING*/
+    align-items: center;
+    margin: 0px auto;
+
+    width: 1080px;
+    height: 100%;
+
+    color: var(--textcolor);
+    background-color: var(--bgcolor);
+    background-image: url(../img/metal_seamless.png);
+}
+
+/*FLEX CENTER*/
+header, main, .big_box_container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+
+/*FLEX COLUMN*/
+#wrapper, .col, footer, main {
+    display: flex;
+    flex-direction: column;
+}
+
+.col {
+display: flex;
+justify-content: center;
+}
+
+.row {
+    display: flex;
+}
+
+.reduce_size {
+    font-size: 90%;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/*HOVER EFFECT */
+button:hover {
+    transform: scale(1.1);
+    transition: 100ms;
+}
+
+.info_card:hover {
+    box-shadow:
+    0px 0px 0 6px var(--bordercolor),
+    0px 0px 0 8px black,
+    inset 0px 0px 20px 20px var(--transhighlight);
+    transition: 500ms;
+}
+
+
+/*BORDER SETTER*/
+section, #game_canvas, .game_header, .info_card {
+    width: 900px;
+
+    border-radius: var(--roundedge);
+    border: 2px solid black;
+    box-shadow:
+    0px 0px 0 6px var(--bordercolor),
+    0px 0px 0 8px black,
+    inset 0px 0px 4px 4px var(--transhighlight);
+}
+
+section, table {
+    box-shadow:
+    0px 0px 0 6px var(--bordercolor),
+    0px 0px 0 8px black,
+    inset 0px 0px 4px 4px rgba(0, 255, 64, 0.12);
+}
+
+/* HEADER */
+header h1, #highscore_head h2 {
+    text-shadow: 1px 1px 5px var(--texthighlight);
+    color: var(--heavytext);
+}
+
+/* SECTION + INFO CARDS + MENU HEADER */
+section {
+    display: flex;
+}
+
+section p, section h4 {
+    padding: 0 var(--globalpad);
+}
+
+section, .info_card {
+    height: 72px;
+}
+
+section, .info_card, .game_header, #enterNamePopUp {
+    background-color: black;
+    background-image: url(../img/electricity_seamless.png);
+    background-size:contain;
+}
+
+section, table {
+    background-image: url(../img/electricity_seamless_green.png);
+    background-repeat: repeat;
+    background-size: contain;
+}
+
+.game_header p, .info_card p {
+    color: var(--texthighlight);
+    font-family: 'Roboto Mono', monospace;
+}
+
+.game_header h3, .game_header p {
+    padding: .12rem 1rem;
+}
+
+.game_header h3 {
+    padding-top: .25rem;
+}
+
+.game_header p {
+    padding-bottom: .3rem;
+}
+
+/* INFO CARD */
+.info_card {
+    width: 400px;
+    margin: .5rem;
+    display: flex;
+}
+
+.info_card h4, .info_card p {
+    padding: .06rem 0;
+}
+
+/*IMAGES*/
+img {
+    width: 72px;
+    height: 72px;
+    background-color:rgba(240, 248, 255, 0.333);
+    border-radius: var(--roundedge);
+    margin-right: 1rem;
+}
+
+/* SECTION */
+section img {
+    border-right: 1px solid black;
+}
+
+/* GAME */
+#game_canvas {
+    background-color: white;
+    height: 600px;
+    cursor: pointer;
+}
+
+/*FOOTER*/
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 900px;
+    text-align: right;
+}
+
+button {
+    background-color: grey;
+    border: 2px solid var(--bordercolor);
+    width: 100px;
+    height: 40px;
+    border-radius: var(--roundedge);
+    background-image: url(../img/metal_seamless.png);
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0 .5rem;
+}
+
+button:hover, #submit:hover {
+    box-shadow:         inset 0 0 10px rgba(0, 255, 13, 0.507);
+    -moz-box-shadow:    inset 0 0 10px rgba(0, 255, 13, 0.507);
+    -webkit-box-shadow: inset 0 0 10px rgba(0, 255, 13, 0.507);
+
+    text-shadow: 1px 1px 5px var(--texthighlight);
+}
+
+footer p {
+    color: var(--texthighlight);
+    font-size: 80%;
+}
+#button_menu {
+    display: flex;
+    justify-content: center;
+}
+#menu_footer {
+    justify-content: space-around;
+}
+
+#menu_button_container {
+    margin: 0px auto;
+}
+
+/*MENU BUTTON*/
+.menu_button {
+    width: 300px;
+    height: 72px;
+    font-size: 200%;
+}
+
+/*POP UP*/
+#enterNamePopUp {
+    width: 300px;
+    height: 124px;
+    background-color: black;
+    position: absolute;
+    margin: 0px auto;
+    bottom: 50%;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+
+    border-radius: var(--roundedge);
+    border: 2px solid black;
+    box-shadow:
+    0px 0px 0 6px var(--bordercolor),
+    0px 0px 0 8px black,
+    inset 0px 0px 4px 4px var(--transhighlight);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    background-color: var(--bordercolor);
+    margin: .12rem;
+    border: none;
+    text-align: center;
+    font-size: 1.5rem;
+    width: 200px;
+}
+
+#submit {
+    font-size: 1rem;
+    width: 136px;
+    border-radius: 4px;
+    border: 2px solid var(--bordercolor);
+}
+
+/* LEADERBOARD */
+
+#highscore_head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+table {
+    text-align: center;
+    background-color: black;
+}
+
+.table_header, #submit {
+    background-color: var(--bordercolor);
+    background-image: url(../img/metal_seamless.png);
+    background-blend-mode: overlay;
+}
+
+th, td {
+    width: 84px;
+    padding: 6px;
+}
+
+th {
+    color: var(--texthighlight);
+    font-family: 'Roboto Mono', monospace;
+    text-shadow: 1px 1px black;
+}
+
+td {
+    border: 2px solid black;
+    text-shadow: 0px 0px 3px var(--heavytext);
+    font-family: 'Roboto Mono', monospace;
+}
+
+.table_data:hover {
+    background-color: var(--transhighlight);
+}
+
+.border_right {
+    border-right: 2px solid black;
+}
+
+.leader_nav {
+    margin: 0 .75rem;
+}
+
+.leader_nav:hover {
+    transition: 150ms;
+    text-shadow: 0px 0px 5px var(--heavytext);
+}
