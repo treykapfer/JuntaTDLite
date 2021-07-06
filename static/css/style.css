@@ -48,7 +48,7 @@ a:visited {
 
     color: var(--textcolor);
     background-color: var(--bgcolor);
-    background-image: url(../img/metal_seamless.png);
+    background-image: url('../img/metal_seamless.png');
 }
 
 /*FLEX CENTER*/
@@ -137,12 +137,12 @@ section, .info_card {
 
 section, .info_card, .game_header, #enterNamePopUp {
     background-color: black;
-    background-image: url(../img/electricity_seamless.png);
+    background-image: url('../img/electricity_seamless.png');
     background-size:contain;
 }
 
 section, table {
-    background-image: url(../img/electricity_seamless_green.png);
+    background-image: url('../img/electricity_seamless_green.png');
     background-repeat: repeat;
     background-size: contain;
 }
@@ -193,7 +193,7 @@ section img {
 #game_canvas {
     background-color: white;
     height: 600px;
-    cursor: pointer;
+    cursor: url('../img/cursor.png'), auto;
 }
 
 /*FOOTER*/
@@ -211,7 +211,7 @@ button {
     width: 100px;
     height: 40px;
     border-radius: var(--roundedge);
-    background-image: url(../img/metal_seamless.png);
+    background-image: url('../img/metal_seamless.png');
     color: black;
     font-weight: bold;
     cursor: pointer;
@@ -311,7 +311,7 @@ table {
 
 .table_header, #submit {
     background-color: var(--bordercolor);
-    background-image: url(../img/metal_seamless.png);
+    background-image: url('../img/metal_seamless.png');
     background-blend-mode: overlay;
 }
 
