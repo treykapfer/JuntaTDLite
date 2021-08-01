@@ -427,12 +427,10 @@ const handleEnemies = () => {
                 if (enemyRate < enemyFloor) {
                     enemyRate = enemyFloor;
                 }
-            // console.log(`${enemyRate} new enemy spawn rate`);
             }
     }
     //SPAWNS HIGHER LEVEL ENEMIES AT STAGGERED RATE AFTER LEVEL 4
     if (frame % (enemyRate + (Math.floor(1000/(incrementer-7)))) === 0 && morassium < winningScore && level >= 4) {
-        // console.log(`${enemyRate + (Math.floor(1000/(incrementer-7)))} is blue bug rate`);
         let verticalPosition = Math.floor(Math.random() * 5 + 1) * cellSize + cellGap;
         let newEnemy2 = new Enemy(verticalPosition);
         newEnemy2.enemyType = enemy2;
@@ -539,7 +537,6 @@ let speedlingMultiplier = 1;
 const handleSpeedling = () => {
     if (frame % 2500 === 0 && level !== 1) {
         for (let i = 0; i < speedlingMultiplier; i++) {
-            // console.log("speedling wave spawned")
             let verticalPosition = Math.floor(Math.random() * 5 + 1) * cellSize + cellGap;
             enemies.push(new Speedling(verticalPosition));
             enemyPositions.push(verticalPosition);
@@ -549,7 +546,6 @@ const handleSpeedling = () => {
 
     if (frame % 3010 === 0 && level >= 9) {
         for (let i = 0; i < speedlingMultiplier/3; i++) {
-            // console.log("super speedling wave spawned");
             let verticalPosition = Math.floor(Math.random() * 5 + 1) * cellSize + cellGap;
             let newSuperSpeedling = new Speedling(verticalPosition);
             newSuperSpeedling.enemyType = superspeedling;
@@ -560,7 +556,6 @@ const handleSpeedling = () => {
             enemies.push(newSuperSpeedling);
             enemyPositions.push(verticalPosition);
         }
-        // speedlingMultiplier++;
     } 
 }
 
@@ -867,7 +862,7 @@ const handleLevelClear = () => {
         if (level === 7) BossIncrementer++;
         if (level === 10) BossIncrementer++;
 
-        //CONSOLE LOGS
+        //CONSOLE LOGS FOR TESTING
         // console.log(`${enemyBaseSpeed} is new base speed`);
         // console.log(`${enemyFloor} is new enemy floor`);
         // console.log(`${enemyCeiling} is new enemy ceiling`);
