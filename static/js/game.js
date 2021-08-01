@@ -560,7 +560,7 @@ const handleSpeedling = () => {
             enemies.push(newSuperSpeedling);
             enemyPositions.push(verticalPosition);
         }
-        speedlingMultiplier++;
+        // speedlingMultiplier++;
     } 
 }
 
