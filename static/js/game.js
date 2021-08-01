@@ -265,7 +265,7 @@ const handleDefenders = () => {
                 enemies[j].movement = 0;
                 defenders[i].health -= enemyDamage;
                 if (defenders[i].defenderType === destroyer) {
-                    enemies[j].health -= 0.33;
+                    enemies[j].health -= 0.35;
                     ctx.drawImage(flames[Math.floor(Math.random()*flames.length)], 0, 0, 512, 512, enemies[j].x+Math.floor(Math.random()*5)-20, enemies[j].y+15+Math.floor(Math.random()*5), 72, 36);
                 }
                 //EXTRA DAMAGE FROM BOSSES
@@ -443,9 +443,11 @@ const handleEnemies = () => {
     }
     //SPAWNS SPEEDLINGS AT LEVEL 3
     if (frame % (enemyRate + (Math.floor(900/(incrementer-6)))) === 0 && morassium < winningScore && level >= 3) {
-        let verticalPosition = Math.floor(Math.random() * 5 + 1) * cellSize + cellGap;
-        enemies.push(new Speedling(verticalPosition));
-        enemyPositions.push(verticalPosition);
+        for (let i = 0; i < Math.floor(Math.random()*(1+(Math.floor(level/2))));i++ )  {
+            let verticalPosition = Math.floor(Math.random() * 5 + 1) * cellSize + cellGap;
+            enemies.push(new Speedling(verticalPosition));
+            enemyPositions.push(verticalPosition);
+        }
     }
 
     //SPAWNS BOSS UNITS EVERY 7K FRAMES
@@ -485,15 +487,17 @@ const handleEnemies = () => {
     }
     //SPAWNS SUPER SPEEDLINGS AT LEVEL 8
     if (frame % (enemyRate + (Math.floor(900/(incrementer-7)))) === 0 && morassium < winningScore && level >= 8) {
-        let verticalPosition = Math.floor(Math.random() * 5 + 1) * cellSize + cellGap;
-        let newSuperSpeedling = new Speedling(verticalPosition);
-        newSuperSpeedling.enemyType = superspeedling;
-        newSuperSpeedling.health = 100;
-        newSuperSpeedling.maxHealth = 100;
-        newSuperSpeedling.speed = Math.random() * 0.6 + 2.5 + BossIncrementer/2 + (enemyBaseSpeed*2);
-        newSuperSpeedling.movement = newSuperSpeedling.speed;
-        enemies.push(newSuperSpeedling);
-        enemyPositions.push(verticalPosition);
+        for (let i = 0; i < Math.floor(Math.random()*(1+(Math.floor(level/2))));i++ ) {
+            let verticalPosition = Math.floor(Math.random() * 5 + 1) * cellSize + cellGap;
+            let newSuperSpeedling = new Speedling(verticalPosition);
+            newSuperSpeedling.enemyType = superspeedling;
+            newSuperSpeedling.health = 100;
+            newSuperSpeedling.maxHealth = 100;
+            newSuperSpeedling.speed = Math.random() * 0.6 + 2.5 + BossIncrementer/2 + (enemyBaseSpeed*2);
+            newSuperSpeedling.movement = newSuperSpeedling.speed;
+            enemies.push(newSuperSpeedling);
+            enemyPositions.push(verticalPosition);
+        }
     }
 }
 
@@ -675,12 +679,6 @@ const handleResources = () => {
     //CHANGE THIS to see if a miner is colliding
     for (let i = 0; i < resources.length; i++){
         resources[i].draw();
-        // if (resources[i] && mouse.x && mouse.y && collision(resources[i], mouse)){
-        //     morassium += resources[i].amount;
-        //     floatingMessages.push(new floatingMessage(`+${resources[i].amount}`, resources[i].x, resources[i].y, 20, 'gold'));
-        //     resources.splice(i, 1);
-        //     i--;
-        // }
         for (let j = 0; j < miners.length; j++) {
             if (resources[i] && miners[j] && collision(resources[i], miners[j])) {
                 morassium += resources[i].amount;
@@ -853,6 +851,7 @@ const handleLevelClear = () => {
         
         //ENEMY SCALING
         // enemyRate = Math.floor(enemyRate * (incrementer/10));
+        speedlingMultiplier = Math.floor(speedlingMultiplier/2);
         enemyCeiling = Math.max(Math.floor(enemyCeiling - (incrementer*2)), 200);
         enemyRate = enemyCeiling;
         enemyBaseSpeed += .04;
