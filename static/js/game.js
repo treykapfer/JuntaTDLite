@@ -6,6 +6,12 @@ const ctx = canvas.getContext('2d');
 canvas.width = 900;
 canvas.height = 600;
 
+//TO DO:
+//split the js file into separate files and import
+//add help menu - basic game info and some stats on the units, on sidebar
+//add personal leaderboard/high scores stored in cache - with option to clear leaderboard
+//add nuke that clears the board - earned after wave 5, only one use
+
 console.log("Game initialized on " + canvas + ctx);
 console.log("Welcome Commander");
 
