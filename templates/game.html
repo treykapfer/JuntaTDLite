@@ -14,11 +14,12 @@
                 <nav id="button_menu">
                     <a href="/game"><button>Restart</button></a>
                     <a href="/"><button>Main Menu</button></a>
+                    <button id="pause_btn">Pause</button>
                 </nav>
                 <div>
                     <p>Game by TJKapfer//MrChow</p>
                     <p>May 2021//First Solo Game</p>
                 </div>
             </footer>
-        <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+        <script type="module" src="{{ url_for('static', filename='js/game.js') }}"></script>
 {% endblock content %}

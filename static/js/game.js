@@ -1,6 +1,7 @@
 //init the canvas element and establish size
 const canvas = document.getElementById('game_canvas');
 const endForm = document.getElementById('enterNamePopUp');
+const pauseBtn = document.getElementById('pause_btn');
 const ctx = canvas.getContext('2d');
 canvas.width = 900;
 canvas.height = 600;
@@ -51,6 +52,7 @@ let totalBossKillCount = 0;
 //SWITCHES
 let gameOver = false;
 let gameWon = false;
+let gamePaused = false;
 let levelCleared = false;
 let bossActive = false;
 
@@ -265,7 +267,7 @@ const handleDefenders = () => {
                 enemies[j].movement = 0;
                 defenders[i].health -= enemyDamage;
                 if (defenders[i].defenderType === destroyer) {
-                    enemies[j].health -= 0.35;
+                    enemies[j].health -= 0.37;
                     ctx.drawImage(flames[Math.floor(Math.random()*flames.length)], 0, 0, 512, 512, enemies[j].x+Math.floor(Math.random()*5)-20, enemies[j].y+15+Math.floor(Math.random()*5), 72, 36);
                 }
                 //EXTRA DAMAGE FROM BOSSES
@@ -782,6 +784,12 @@ const handleGameStatus = () => {
         ctx.fillText('GAME OVER', 456, 72);
         document.getElementById("hints").innerHTML = "You know the price of failure. Report to HQ immediatley."
     }
+    if (gamePaused){
+        ctx.fillStyle = 'gold';
+        ctx.font = '60px orbitron';
+        ctx.fillText('PAUSED', 456, 72);
+        document.getElementById("hints").innerHTML = "No breaks allowed, commander. Get back in there."
+    }
     if (morassium >= winningScore && enemies.length === 0) {
         ctx.fillStyle = 'green';
         ctx.font = '60px orbitron';
@@ -851,7 +859,7 @@ const handleLevelClear = () => {
         
         //ENEMY SCALING
         // enemyRate = Math.floor(enemyRate * (incrementer/10));
-        speedlingMultiplier = Math.floor(speedlingMultiplier/2);
+        speedlingMultiplier = Math.floor(speedlingMultiplier/1.75);
         enemyCeiling = Math.max(Math.floor(enemyCeiling - (incrementer*2)), 200);
         enemyRate = enemyCeiling;
         enemyBaseSpeed += .04;
@@ -900,7 +908,7 @@ canvas.addEventListener('click', ()=> {
                 defenders[i].defenderType = destroyer;
                 defenders[i].spriteWidth = 240;
                 defenders[i].spriteHeight = 133;
-                defenders[i].health = 400;
+                defenders[i].health = 450;
                 defenders[i].shootingSpeed = 45;
                 defenders[i].maxFrame = 7;
                 return;
@@ -931,6 +939,13 @@ canvas.addEventListener('click', ()=> {
         floatingMessages.push(new floatingMessage("You require more credits", mouse.x, mouse.y, 15, 'red'))
     }
 });
+
+pauseBtn.addEventListener('click', ()=> {
+    gamePaused = !gamePaused
+    if (gamePaused === false) {
+        requestAnimationFrame(animate)
+    }
+})
 
 
 //ADD HINTS AND LORE
@@ -984,7 +999,7 @@ const animate = () => {
     cycleHints();
     frame++;
     playerScore = Math.max(0, (HPKilled/2) + ((level-1)*1000) + (totalMorassium*10) + (killCount*10) - (casualties*100) - (extractorDeaths*5000) - Math.floor(frame/100));
-    if (!gameOver && !gameWon) requestAnimationFrame(animate);
+    if (!gameOver && !gameWon && !gamePaused) requestAnimationFrame(animate);
 }
 
 //HANDLE COLLISION
