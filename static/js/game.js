@@ -306,9 +306,12 @@ class floatingMessage {
         this.duration = 0;
         this.color = color;
         this.opacity = 1;
+        this.type = "message"
     }
     update(){
-        this.y -= 0.3;
+        if (this.type === "message") {
+            this.y -= 0.3;
+        }
         this.duration += 1;
         if (this.opacity > 0.01) this.opacity -= 0.01;
     }
@@ -818,8 +821,12 @@ const handleLevelClear = () => {
         
         ////DISPLAY MESSAGE
         if (level !== 10) {
-        floatingMessages.push(new floatingMessage('LEVEL CLEARED', 444, 60, 32, 'lime'));
-        floatingMessages.push(new floatingMessage('...CREDITS RECIEVED', 444, 120, 32, 'lime'));
+            floatingMessages.push(new floatingMessage('LEVEL CLEARED', 444, 60, 32, 'lime'));
+            if (level !== 5) {
+                floatingMessages.push(new floatingMessage('...CREDITS RECIEVED', 444, 120, 32, 'lime'));
+            } else {
+                floatingMessages.push(new floatingMessage('...NUKE EARNED!!!', 444, 120, 32, 'lime'));
+        }
         }
 
         ///HINT MESSAGES
@@ -966,6 +973,9 @@ nukeBtn.addEventListener('click', ()=> {
         for (let i = 0; i < enemies.length; i++) {
             //FLOATERS
             floatingMessages.push(new floatingMessage(`+${enemies[i].maxHealth / 10}`, enemies[i].x, enemies[i].y, 20, 'gold'));
+            let explosion = new floatingMessage("💥", enemies[i].x, enemies[i].y + 60, 60, 'red');
+            explosion.type = "explosion"
+            floatingMessages.push(explosion);
             //GAIN KILL
             numberOfCredits += enemies[i].maxHealth / 10;
             killCount += 1;
