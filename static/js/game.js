@@ -969,7 +969,7 @@ pauseBtn.addEventListener('click', ()=> {
 })
 
 nukeBtn.addEventListener('click', ()=> {
-    if (enemies.length) {
+    if (enemies.length && !gamePaused) {
         for (let i = 0; i < enemies.length; i++) {
             //FLOATERS
             floatingMessages.push(new floatingMessage(`+${enemies[i].maxHealth / 10}`, enemies[i].x, enemies[i].y, 20, 'gold'));
