@@ -225,6 +225,10 @@ section img {
     background-color:rgba(122, 32, 32, 0.75);
 }
 
+#nuke_btn {
+    display: none;
+}
+
 #nuke_btn img {
     background-color:rgba(32, 122, 51, 0.75);
 }

@@ -2,6 +2,7 @@
 const canvas = document.getElementById('game_canvas');
 const endForm = document.getElementById('enterNamePopUp');
 const pauseBtn = document.getElementById('pause_btn');
+const nukeBtn = document.getElementById('nuke_btn');
 const ctx = canvas.getContext('2d');
 canvas.width = 900;
 canvas.height = 600;
@@ -794,7 +795,6 @@ const handleGameStatus = () => {
         ctx.fillStyle = 'gold';
         ctx.font = '60px orbitron';
         ctx.fillText('PAUSED', 456, 72);
-        document.getElementById("hints").innerHTML = "No breaks allowed, commander. Get back in there."
     }
     if (morassium >= winningScore && enemies.length === 0) {
         ctx.fillStyle = 'green';
@@ -840,6 +840,10 @@ const handleLevelClear = () => {
             hints.push("Looks like we've pissed these buggers off. They're shredding us faster after each wave.");
         }
 
+        if (level == 5) {
+            document.getElementById("hints").innerHTML = "You've held longer than most. We are granting you nuclear authorization. Careful, you only get one."
+        }
+
         if (level == 6) {
             document.getElementById("hints").innerHTML = "Bug activity is spiking. More flying bugs have been spotted on our radar. My god.. they're even bigger than the green ones."
         }
@@ -871,6 +875,7 @@ const handleLevelClear = () => {
         enemyBaseSpeed += .04;
         enemyRateIncrease++;
         enemyFloor = Math.max(enemyFloor - (incrementer), 25);
+        if (level === 5) nukeBtn.style.display = "flex";
         if (level >= 5) enemyDamage += .025;
         if (level === 7) BossIncrementer++;
         if (level === 10) BossIncrementer++;
@@ -948,10 +953,32 @@ canvas.addEventListener('click', ()=> {
 
 pauseBtn.addEventListener('click', ()=> {
     gamePaused = !gamePaused
+    document.getElementById("hints").innerHTML = "No breaks allowed, commander. Get back in there."
     if (gamePaused === false) {
         requestAnimationFrame(animate)
+        document.getElementById("hints").innerHTML = "Welcome back, commander."
     }
+    
 })
+
+nukeBtn.addEventListener('click', ()=> {
+    if (enemies.length) {
+        for (let i = 0; i < enemies.length; i++) {
+            //FLOATERS
+            floatingMessages.push(new floatingMessage(`+${enemies[i].maxHealth / 10}`, enemies[i].x, enemies[i].y, 20, 'gold'));
+            //GAIN KILL
+            numberOfCredits += enemies[i].maxHealth / 10;
+            killCount += 1;
+            HPKilled += enemies[i].maxHealth;
+            //REMOVE
+            const findThisIndex = enemyPositions.indexOf(enemies[i].y);
+            enemyPositions.splice(findThisIndex, 1);
+            enemies.splice(i, 1);
+            i--;
+            }
+        }
+    nukeBtn.style.display = "none";
+    })
 
 
 //ADD HINTS AND LORE
