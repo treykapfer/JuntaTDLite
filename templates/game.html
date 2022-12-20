@@ -1,25 +1,49 @@
-{% extends "layout.html" %}
-{% block content %}
-            <section>
-                <img src="{{ url_for('static', filename='img/command_guy.png') }}">
-                <div class="col">
-                    <h4>EHJ Arbiter:</h4>
-                    <p id="hints" onload="cycleHints()">test</p>
-                </div>
-            </section>
-            <main>
-                <canvas id="game_canvas"></canvas>
-            </main>
-            <footer>
-                <nav id="button_menu">
-                    <a href="/game"><button>Restart</button></a>
-                    <button id="pause_btn">Pause</button>
-                    <a href="/"><button>Main Menu</button></a>
-                </nav>
-                <div>
-                    <p>Game by TJKapfer//MrChow</p>
-                    <p>May 2021//First Solo Game</p>
-                </div>
-            </footer>
-        <script type="module" src="{{ url_for('static', filename='js/game.js') }}"></script>
+{% extends "layout.html" %} {% block content %}
+<section>
+  <img src="{{ url_for('static', filename='img/command_guy.png') }}" />
+  <div class="col">
+    <h4>EHJ Arbiter:</h4>
+    <p id="hints" onload="cycleHints()">test</p>
+  </div>
+</section>
+<main>
+  <nav id="button_menu">
+    <div id="game_options">
+      <div class="col">
+        <a href="/game" class="game_btn_wrapper">
+          <img src="{{ url_for('static', filename='img/x-octagon.svg') }}" />
+          <p>Restart</p>
+        </a>
+      </div>
+      <div class="col">
+        <div class="game_btn_wrapper" id="pause_btn">
+          <img src="{{ url_for('static', filename='img/pause-circle.svg') }}" />
+          <p>Pause</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="game_btn_wrapper" id="nuke_btn">
+          <img src="{{ url_for('static', filename='img/nuke.png') }}" />
+          <p id="pause_btn">Nuke</p>
+        </div>
+      </div>
+    </div>
+    <div id="bottom_side_menu">
+      <a href="/"><button>Main Menu</button></a>
+      <a href="/"><button>Highscore</button></a>
+      <a href="/"><button>Unit Info</button></a>
+    </div>
+  </nav>
+  <canvas id="game_canvas"></canvas>
+</main>
+<footer>
+  <div>
+    <p>Game by TJKapfer//MrChow</p>
+    <p>May 2021//First Solo Game</p>
+  </div>
+</footer>
+<script
+  type="module"
+  src="{{ url_for('static', filename='js/game.js') }}"
+></script>
 {% endblock content %}
